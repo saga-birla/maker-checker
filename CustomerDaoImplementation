@@ -1,0 +1,116 @@
+package dao;
+
+import entity.CustomerEntity;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
+
+@Repository
+public class CustomerDaoImplement implements CustomerDao{
+    Configuration configuration = new Configuration().addAnnotatedClass(CustomerEntity.class).configure();
+    SessionFactory sessionFactory = configuration.buildSessionFactory();
+
+//@Autowired
+//SessionFactory sessionFactory;
+
+    @Override
+    //@Transactional
+    public boolean insertCustomer(CustomerEntity customerEntity) {
+//        try(Session session = sessionFactory.getCurrentSession()) {
+//                System.out.println(session.toString());
+//                System.out.println("hello");
+//                session.save(customerEntity);
+//                System.out.println("everyone");
+//        } catch (Exception e)
+//                {
+//                System.out.println("not inserted");
+//                e.printStackTrace();
+//                }
+
+        try (
+             Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.save(customerEntity);
+            session.getTransaction().commit();
+          //  session.close();
+        } catch (Exception e) {
+            System.out.println("an error occurred");
+            e.printStackTrace();
+            e.getMessage();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateCustomer(CustomerEntity customerEntity) {
+//        try {
+//            Session session = sessionFactory.openSession();
+//            session.update(customerEntity);
+//        } catch (Exception e) {
+//            System.out.println("not updated");
+//            e.printStackTrace();
+//        }
+
+        try (Session session1 = sessionFactory.openSession()) {
+            session1.beginTransaction();
+            session1.update(customerEntity);
+            session1.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("not updated");
+            e.printStackTrace();
+        }
+
+
+      return true;
+    }
+
+    @Override
+    public boolean deleteCustomer(int code)
+    {
+        try(Session session3=sessionFactory.openSession()){
+            session3.beginTransaction();
+            CustomerEntity customerEntity=session3.load(CustomerEntity.class,code);
+            session3.delete(customerEntity);
+            session3.getTransaction().commit();
+
+        }catch (Exception e)
+        {
+            System.out.println("not deleted");
+            e.printStackTrace();
+        }
+//        try {
+//            Session session = sessionFactory.openSession();
+//            CustomerEntity customer = session.load(CustomerEntity.class,);
+//            session.delete(customer);
+//        } catch (Exception e) {
+//            System.out.println("not deleted");
+//            e.printStackTrace();
+//        }
+       return true;
+    }
+
+    @Override
+    public CustomerEntity printCustomer(int code) {
+        try(Session session4=sessionFactory.openSession())
+        {
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<CustomerEntity> printAllCustomers() {
+
+        return null;
+    }
+
+}
