@@ -1,0 +1,23 @@
+package config;
+
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[0];
+    }
+
+    @Override
+    // Specify @Configuration classes for the Servlet application context
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[]{AppConfiguration.class};
+    }
+
+    @Override
+    // Specify the servlet mapping(s) for the DispatcherServlet
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
+}
