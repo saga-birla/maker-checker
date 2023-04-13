@@ -1,0 +1,37 @@
+package service;
+
+import dao.CustomerDaoImplement;
+import entity.CustomerEntity;
+
+import java.util.List;
+
+public class ServiceDaoImplement implements ServiceDao {
+    CustomerDaoImplement customerDaoImplement=new CustomerDaoImplement();
+    @Override
+    public boolean insertCustomer(CustomerEntity customerEntity) {
+        System.out.println(customerEntity);
+        return customerDaoImplement.insertCustomer(customerEntity);
+    }
+
+    @Override
+    public boolean updateCustomer(CustomerEntity customerEntity)
+    {
+        return customerDaoImplement.updateCustomer(customerEntity);
+    }
+
+    @Override
+    public boolean deleteCustomer(int code) {
+        return customerDaoImplement.deleteCustomer(code);
+    }
+
+    @Override
+    public CustomerEntity printCustomer(int code) {
+        return customerDaoImplement.printCustomer(code);
+    }
+
+    @Override
+    public List<CustomerEntity> printAllCustomers() {
+        return null;
+    }
+
+}
