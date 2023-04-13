@@ -1,0 +1,50 @@
+package controller;
+
+import entity.CustomerEntity;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import service.ServiceDaoImplement;
+
+import javax.transaction.Transactional;
+
+
+@Controller
+public class MakerController {
+
+//    @RequestMapping("maker")
+//    public String maker(Model model)
+//    {
+//        model.addAttribute("customer",new CustomerEntity());
+//        return "maker-dashboard";
+//    }
+
+
+    @RequestMapping("maker")
+    public String formProcess(Model model)
+    {
+       model.addAttribute("customer",new CustomerEntity());
+        return "registerForm";
+    }
+
+
+    ServiceDaoImplement serviceDaoImplement=new ServiceDaoImplement();
+
+    @RequestMapping("process")
+    public String formProcess1(@ModelAttribute("customer")CustomerEntity newcustomer)
+    {
+        System.out.println(newcustomer);
+        Boolean customer =serviceDaoImplement.insertCustomer(newcustomer);
+       return "success";
+    }
+    @RequestMapping("processed")
+    public String formProcess2(@ModelAttribute("customer")CustomerEntity newcustomer)
+    {
+        serviceDaoImplement.updateCustomer(newcustomer);
+        return "success";
+
+    }
+}
