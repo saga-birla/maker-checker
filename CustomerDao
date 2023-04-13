@@ -1,0 +1,13 @@
+package dao;
+
+import entity.CustomerEntity;
+
+import java.util.List;
+
+public interface CustomerDao{
+    boolean insertCustomer(CustomerEntity customerEntity);
+    boolean updateCustomer(CustomerEntity customerEntity);
+    boolean deleteCustomer(int code);
+    CustomerEntity printCustomer(int code);
+    List<CustomerEntity> printAllCustomers();
+}
