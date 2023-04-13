@@ -1,0 +1,196 @@
+package entity;
+
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="CustomerAnj16917")
+public class CustomerEntity {
+
+    @NotNull
+   // @GeneratedValue(strategy= GenerationType.AUTO)
+    private int customerId;
+
+    @NotNull
+    @Id
+    private String customerCode;
+
+    @Column(name="CustomerName",length = 30,nullable = false)
+   // @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input")
+    private String customerName;
+
+    @NotNull
+    //@Size(max=100)
+    private String customerAddress1;
+
+   // @Size(max=100)
+    private String  customeAddress2;
+
+    //@Size(max=100)
+    private String email;
+
+    private String primaryContactPerson;
+    private String recordStatus;
+    private String flag;
+    private String createdBy;
+    private String modifiedBy = "";
+    private String authorizedBy="";
+    private Long pinCode;
+    private Long contact;
+    private String createdDate, modifiedDate = "";
+    private String authorizedDate = "";
+    public CustomerEntity(){}
+
+
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerAddress1() {
+        return customerAddress1;
+    }
+
+    public void setCustomerAddress1(String customerAddress1) {
+        this.customerAddress1 = customerAddress1;
+    }
+
+    public String getCustomeAddress2() {
+        return customeAddress2;
+    }
+
+    public void setCustomeAddress2(String customeAddress2) {
+        this.customeAddress2 = customeAddress2;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPrimaryContactPerson() {
+        return primaryContactPerson;
+    }
+
+    public void setPrimaryContactPerson(String primaryContactPerson) {
+        this.primaryContactPerson = primaryContactPerson;
+    }
+
+    public String getRecordStatus() {
+        return recordStatus;
+    }
+
+    public void setRecordStatus(String recordStatus) {
+        this.recordStatus = recordStatus;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public String getAuthorizedBy() {
+        return authorizedBy;
+    }
+
+    public void setAuthorizedBy(String authorizedBy) {
+        this.authorizedBy = authorizedBy;
+    }
+
+    public Long getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(Long pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    public Long getContact() {
+        return contact;
+    }
+
+    public void setContact(Long contact) {
+        this.contact = contact;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(String modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public String getAuthorizedDate() {
+        return authorizedDate;
+    }
+
+    public void setAuthorizedDate(String authorizedDate) {
+        this.authorizedDate = authorizedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerEntity{" +
+                "customerId=" + customerId +
+                ", customerCode='" + customerCode + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", customerAddress1='" + customerAddress1 + '\'' +
+                ", customeAddress2='" + customeAddress2 + '\'' +
+                ", email='" + email + '\'' +
+                ", primaryContactPerson='" + primaryContactPerson + '\'' +
+                ", recordStatus='" + recordStatus + '\'' +
+                ", flag='" + flag + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+                ", modifiedBy='" + modifiedBy + '\'' +
+                ", authorizedBy='" + authorizedBy + '\'' +
+                ", pinCode=" + pinCode +
+                ", contact=" + contact +
+                ", createdDate='" + createdDate + '\'' +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", authorizedDate='" + authorizedDate + '\'' +
+                '}';
+    }
+}
