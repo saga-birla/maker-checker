@@ -1,0 +1,44 @@
+package config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.stereotype.Component;
+
+import javax.sql.DataSource;
+
+@Component
+@EnableWebSecurity
+public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+
+//    @Autowired
+//    DataSource dataSource;
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception{
+//    }
+    @Bean
+    public UserDetailsService userDetailsServiceBean() throws Exception{
+        InMemoryUserDetailsManager manager=new InMemoryUserDetailsManager();
+        manager.createUser(User.withUsername("maker").password("{noop}maker123").roles("MAKER").build());
+        manager.createUser(User.withUsername("checker").password("{noop}checker123").roles("CHECKER").build());
+        return manager;
+    }
+
+    public void configure(HttpSecurity http) throws Exception{
+        http.authorizeRequests()
+                .antMatchers("/maker","/checker")
+                .authenticated()
+                .antMatchers("/maker").hasRole("MAKER")
+                .antMatchers("/checker").hasRole("CHECKER")
+                .and()
+                .formLogin()
+                .and()
+                .exceptionHandling().accessDeniedPage("/access-denied");
+    }
+}
